@@ -1,8 +1,13 @@
 version: 2
-
 sources:
-  - name: raw          # The database/schema name (logical name for the source)
-    schema: csv    # The schema where the table is located
+  - name: raw_csv
+    schema: csv
     database: RAW
     tables:
-      - name: medical_data  # The table name
+      - name: medical_data
+      
+  - name: raw_json
+    schema: json
+    database: RAW
+    tables:
+      - name: medications
