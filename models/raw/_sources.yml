@@ -11,3 +11,12 @@ sources:
     database: RAW
     tables:
       - name: medications
+
+
+
+  - name: sql_server
+    schema: SQL_SERVER_DS001
+    database: RAW
+    tables:
+      - name: appointments
+      - name: patients
