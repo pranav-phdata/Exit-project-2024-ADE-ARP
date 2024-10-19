@@ -1,0 +1,13 @@
+models:
+  - name: patients
+    description: Contains personal information including name, date of birth, and postal code.
+    columns:
+      - name: PATIENTID
+        data_tests:
+          - not_null    
+          - relationships:
+              to: ref('patients')
+              field: PATIENTID
+      - name: DATEOFBIRTH
+        tests:
+          - not_null
