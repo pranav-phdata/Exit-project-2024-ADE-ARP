@@ -14,4 +14,4 @@ SELECT
     TEST_DATE,
     TEST_RESULT
 FROM 
-    {{ source('raw', 'medical_data') }}
+    {{ source('raw_csv', 'medical_data') }}
