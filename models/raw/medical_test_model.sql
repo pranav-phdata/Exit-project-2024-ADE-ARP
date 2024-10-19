@@ -1,7 +1,13 @@
 -- models/raw_medical_data.sql
 
 {{ config(
-    materialized='view'
+    materialized='table',
+    post_hook = [
+        "ALTER TABLE MEDICAL_DATA
+        ADD CONSTRAINT fk_patient_id
+        FOREIGN KEY (PATIENTID)
+        REFERENCES patients(PATIENTID)"
+    ]
 ) }}
 
 SELECT

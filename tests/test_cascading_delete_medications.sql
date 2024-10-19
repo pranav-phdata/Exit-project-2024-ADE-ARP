@@ -10,4 +10,4 @@ with deleted_patients as (
 select *
 from deleted_patients
 left join {{ ref('medications') }} on deleted_patients.PatientID = {{ ref('medications') }}.PatientID
-where {{ ref('medications') }}.PatientID is not null;
+where {{ ref('medications') }}.PatientID is not null
