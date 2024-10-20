@@ -1,0 +1,22 @@
+version: 2
+sources:
+  - name: raw_csv
+    schema: csv
+    database: RAW
+    tables:
+      - name: medical_data
+      
+  - name: raw_json
+    schema: json
+    database: RAW
+    tables:
+      - name: medications
+
+
+
+  - name: sql_server
+    schema: SQL_SERVER_DS001
+    database: RAW
+    tables:
+      - name: appointments
+      - name: patients
