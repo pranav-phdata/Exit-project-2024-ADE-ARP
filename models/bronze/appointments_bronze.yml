@@ -1,0 +1,25 @@
+models:
+  - name: appointments_bronze
+    description: Stores appointment details with time information.
+    columns:
+      - name: APPOINTMENT_ID
+        description: The unique key for each patient.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: PATIENT_ID
+        data_tests:
+          - not_null    
+          - relationships:
+              to: ref('patients')
+              field: PATIENTID
+
+      - name: APPOINTMENT_TIME
+        tests:
+          - not_null
+
+      - name: APPOINTMENT_DATE
+        tests:
+          - not_null
+              

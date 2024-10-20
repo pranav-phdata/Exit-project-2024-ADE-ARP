@@ -1,0 +1,12 @@
+models:
+  - name: medical_data_bronze
+    description: Stores appointment details with time information.
+    columns:
+      - name: PATIENT_ID
+        data_tests:
+          - not_null    
+          - relationships:
+              to: ref('patients')
+              field: PATIENTID
+
+              
