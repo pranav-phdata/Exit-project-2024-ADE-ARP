@@ -12,8 +12,6 @@ sources:
     tables:
       - name: medications
 
-
-
   - name: sql_server
     schema: SQL_SERVER_DS001
     database: RAW

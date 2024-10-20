@@ -1,0 +1,42 @@
+models:
+  - name: medications_bronze
+    description: Contains personal information including name, date of birth, and postal code.
+    columns:
+      - name: PATIENT_ID
+        data_tests:
+          - not_null    
+          - relationships:
+              to: ref('patients')
+              field: PATIENTID
+      
+      - name: MEDICATION_TYPE
+        description: The type of medication prescribed.
+        tests:
+          - not_null:
+              severity: warn
+              description: "All medication types should be specified."
+
+      - name: DOSAGE
+        description: The dosage of the medication.
+        tests:
+          - not_null:
+              severity: warn
+              description: "Dosage must be specified for each medication."
+          
+      - name: START_DATE
+        description: The start date of the medication.
+        tests:
+          - not_null               
+          - dbt_expectations.expect_column_values_to_be_in_type_list:
+                column_type_list: ['date']   
+
+      - name: END_DATE
+        description: The end date of the medication.
+        tests:
+          - not_null                
+          - dbt_expectations.expect_column_values_to_be_in_type_list:
+                column_type_list: ['date']   
+          - dbt_utils.expression_is_true:     # Ensure END_DATE is not before START_DATE
+              severity: warn
+              expression: ">= START_DATE"
+              description: "Ensures that the end date is not earlier than the start date."

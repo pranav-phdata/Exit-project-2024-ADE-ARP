@@ -1,0 +1,32 @@
+models:
+  - name: patients_bronze
+    description: Contains personal information including name, date of birth, and postal code.
+    columns:
+      - name: PATIENT_ID
+        data_tests:
+          - not_null    
+          - relationships:
+              to: ref('patients')
+              field: PATIENTID
+      - name: NAME
+        description: The name of the patient.
+        tests:
+          - not_null:                     # Name should not be null.
+              severity: warn
+              description: "Every patient must have a name."
+      
+      - name: DATE_OF_BIRTH
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_in_type_list:
+                column_type_list: ['date']   
+
+      - name: POSTAL_CODE
+        description: The postal code of the patient.
+        tests:
+          - not_null:                     
+              severity: warn               
+              description: "Postal code should not be null, but may be missing for some records."
+          - length:                       
+              max: 10                      
+              description: "Postal code must be a valid length."
