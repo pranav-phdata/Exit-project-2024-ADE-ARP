@@ -8,5 +8,24 @@ models:
           - relationships:
               to: ref('patients')
               field: PATIENTID
+      
+      - name: TEST_TYPE
+        description: The type of medical test conducted.
+        tests:
+          - not_null:                # Not null check for TEST_TYPE
+              severity: warn
+          
+      - name: TEST_DATE
+        description: The date of the medical test.
+        tests:
+          - not_null                
+          - dbt_expectations.expect_column_values_to_be_in_type_list:
+                column_type_list: ['date']   
+
+      - name: TEST_RESULT
+        description: The result of the medical test.
+        tests:
+          - not_null:
+              severity: warn       
 
               
