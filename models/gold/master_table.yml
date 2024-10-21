@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: master_table_gold
+  - name: master_table
     description: |
       This table combines patient data, appointments, medical tests, and medication details to provide a comprehensive view of each patient. It pulls data from multiple bronze tables and presents the final unified dataset in the gold layer for analytics and reporting purposes.
     columns:
