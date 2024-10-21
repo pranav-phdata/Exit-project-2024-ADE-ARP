@@ -1,4 +1,4 @@
--- tests/test_cascading_delete_appointments.sql
+-- tests/test_cascading_delete_medications.sql
 
 with deleted_patients as (
     -- Simulate deletion from Patients table
