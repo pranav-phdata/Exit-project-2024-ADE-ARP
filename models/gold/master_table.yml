@@ -1,0 +1,93 @@
+version: 2
+
+models:
+  - name: master_table_gold
+    description: |
+      This table combines patient data, appointments, medical tests, and medication details to provide a comprehensive view of each patient. It pulls data from multiple bronze tables and presents the final unified dataset in the gold layer for analytics and reporting purposes.
+    columns:
+      - name: PATIENT_ID
+        description: The unique identifier for each patient.
+        tests:
+          - not_null
+          - unique  # PATIENT_ID should be unique since it comes from the patients_bronze model
+
+      - name: NAME
+        description: The name of the patient.
+        tests:
+          - not_null:
+              severity: error
+
+      - name: DATE_OF_BIRTH
+        description: The birth date of the patient.
+        tests:
+          - not_null 
+          - accepted_values:
+              values: ['1900-01-01', '2024-12-31']
+          - dbt_expectations.expect_column_values_to_be_in_type_list:
+              column_type_list: ['date'] 
+
+      - name: POSTAL_CODE
+        description: The postal code of the patient's residence.
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: APPOINTMENT_ID
+        description: The unique identifier for each appointment.
+        tests:
+          - unique
+
+      - name: APPOINTMENT_DATE
+        description: The date of the appointment.
+        tests:
+          - not_null:
+              severity: warn
+          - dbt_expectations.expect_column_values_to_be_in_type_list:
+              column_type_list: ['date'] 
+
+      - name: APPOINTMENT_TIME
+        description: The time of the appointment.
+        tests:
+          - dbt_expectations.expect_column_values_to_be_in_type_list:
+              column_type_list: ['time']
+
+      - name: TEST_TYPE
+        description: The type of medical test conducted on the patient.
+        tests:
+          - not null:
+              severity: warn
+
+      - name: TEST_DATE
+        description: The date when the medical test was conducted.
+        tests:
+          - not_null:
+              severity: warn
+          - dbt_expectations.expect_column_values_to_be_in_type_list:
+              column_type_list: ['date']
+
+      - name: TEST_RESULT
+        description: The result of the medical test.
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: MEDICATION_TYPE
+        description: The type of medication prescribed to the patient.
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: DOSAGE
+        description: The dosage of the prescribed medication.
+
+      - name: MEDICATION_START_DATE
+        description: The start date of the prescribed medication.
+        tests:
+          - dbt_expectations.expect_column_values_to_be_in_type_list:
+              column_type_list: ['date']
+
+      - name: MEDICATION_END_DATE
+        description: The end date of the prescribed medication.
+        tests:
+          - dbt_expectations.expect_column_values_to_be_in_type_list:
+              column_type_list: ['date']

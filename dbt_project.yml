@@ -47,3 +47,6 @@ models:
       +database: bronze
       +schema: bronze
       +materialized: table
+    gold:
+      +database: gold
+      +schema: gold
