@@ -1,8 +1,3 @@
-<<<<<<< HEAD
--- tests/test_cascading_delete_medical_data.sql
-
-=======
->>>>>>> 4e8fb72a3fb575bb74003a974ed0c58263bfd401
 with deleted_patients as (
     -- Simulate deletion from Patients table
     select PatientID from {{ ref('patients') }}
