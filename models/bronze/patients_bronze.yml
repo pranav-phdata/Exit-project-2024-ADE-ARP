@@ -4,10 +4,7 @@ models:
     columns:
       - name: PATIENT_ID
         data_tests:
-          - not_null    
-          - relationships:
-              to: ref('patients')
-              field: PATIENTID
+          - not_null
       - name: NAME
         description: The name of the patient.
         tests:

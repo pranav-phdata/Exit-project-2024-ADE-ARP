@@ -7,7 +7,7 @@ models:
           - not_null    
           - relationships:
               to: ref('patients_bronze')
-              field: PATIENTID
+              field: PATIENT_ID
       
       - name: TEST_TYPE
         description: The type of medical test conducted.
