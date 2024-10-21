@@ -16,7 +16,7 @@ models:
           - not_null                
           - relationships:          
               to: ref('patients_bronze')    
-              field: PATIENTID
+              field: PATIENT_ID
 
       - name: APPOINTMENT_TIME
         description: The time of the appointment.

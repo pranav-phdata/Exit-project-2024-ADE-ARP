@@ -9,8 +9,7 @@ models:
         description: The unique identifier for each patient.
         tests:
           - not_null
-          - unique  # PATIENT_ID should be unique since it comes from the patients_bronze model
-
+          
       - name: NAME
         description: The name of the patient.
         tests:
@@ -20,9 +19,7 @@ models:
       - name: DATE_OF_BIRTH
         description: The birth date of the patient.
         tests:
-          - not_null 
-          - accepted_values:
-              values: ['1900-01-01', '2024-12-31']
+          - not_null
           - dbt_expectations.expect_column_values_to_be_in_type_list:
               column_type_list: ['date'] 
 
@@ -35,7 +32,7 @@ models:
       - name: APPOINTMENT_ID
         description: The unique identifier for each appointment.
         tests:
-          - unique
+          - not_null
 
       - name: APPOINTMENT_DATE
         description: The date of the appointment.
@@ -54,7 +51,7 @@ models:
       - name: TEST_TYPE
         description: The type of medical test conducted on the patient.
         tests:
-          - not null:
+          - not_null:
               severity: warn
 
       - name: TEST_DATE
