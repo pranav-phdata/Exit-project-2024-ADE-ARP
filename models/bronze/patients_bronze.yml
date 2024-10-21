@@ -27,6 +27,6 @@ models:
           - not_null:                     
               severity: warn               
               description: "Postal code should not be null, but may be missing for some records."
-          - length:                       
-              max: 10                      
+          - dbt_expectations.expect_column_value_lengths_to_be_between: # Test can be used to add a min_value also for better validation
+              max_value: 10  
               description: "Postal code must be a valid length."
