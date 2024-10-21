@@ -15,7 +15,7 @@ models:
         tests:
           - not_null                
           - relationships:          
-              to: ref('patients')    
+              to: ref('patients_bronze')    
               field: PATIENTID
 
       - name: APPOINTMENT_TIME
