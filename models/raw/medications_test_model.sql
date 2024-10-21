@@ -1,11 +1,5 @@
 {{
-    config(materialized = 'table',
-    post_hook = [
-        "ALTER TABLE medications
-        ADD CONSTRAINT fk_patient_id
-        FOREIGN KEY (PATIENTID)
-        REFERENCES patients(PATIENTID)"
-    ]
+    config(materialized = 'table'
     )
 }}
 

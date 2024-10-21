@@ -1,8 +1,5 @@
 {{ config(
-    materialized='table',
-    post_hook = [
-        "ALTER TABLE patients ADD PRIMARY KEY (PATIENTID)"
-    ]
+    materialized='table'
 ) }}
 
 SELECT
