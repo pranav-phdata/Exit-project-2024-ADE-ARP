@@ -14,14 +14,12 @@ models:
         tests:
           - not_null:
               severity: warn
-              description: "All medication types should be specified."
 
       - name: DOSAGE
         description: The dosage of the medication.
         tests:
           - not_null:
               severity: warn
-              description: "Dosage must be specified for each medication."
           
       - name: START_DATE
         description: The start date of the medication.
@@ -39,4 +37,3 @@ models:
           - dbt_utils.expression_is_true:     # Ensure END_DATE is not before START_DATE
               severity: warn
               expression: ">= START_DATE"
-              description: "Ensures that the end date is not earlier than the start date."

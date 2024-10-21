@@ -3,6 +3,7 @@
     materialized="view",
     alias="master_table"
 )}}
+
 SELECT
     p.PATIENT_ID,
     p.NAME,
